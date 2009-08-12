@@ -1,0 +1,204 @@
+<html>
+<head>
+<title>CVS Review</title>
+<script type="text/javascript" src="/static/jquery.js"></script>
+<script type="text/javascript" src="/static/jquery_cookie.js"></script>
+<script type="text/javascript" src="/static/cvsreview.js"></script>
+<script type="text/javascript" language="javascript">
+$(document).ready(function() {
+   {% for cat in category_list %}
+      if ($.cookie('cat_{{cat.id}}') == 'y') {
+         $("#modulelist_cat_{{cat.id}}").css('display', 'inline');
+         $("#imgarrow_{{cat.id}}").css('display', 'inline');
+         $("#imgtriangle_{{cat.id}}").css('display', 'none');
+      }
+   {% endfor %}
+})
+</script>
+
+<link rel="stylesheet" href="/static/cvsreview.css" type="text/css">
+</head>
+<body>
+<h2>CVS Review</h2>
+
+<table>
+<tr>
+<td class="x" style="width:400px; vertical-align:middle">
+    <a id="addmodulelink" href="javascript:showaddmodule()">Add module</a>
+    <span id="addmoduleerror" style="font-weight:bold; color:red;"></span>
+    <span id="addmoduleresult" style="font-weight:bold; color:green;"></span>
+</td>
+</tr>
+<tr>
+<td class="y" style="vertical-align:middle" >
+    <div id="addmoduleform" style="margin: 4px;display:none">
+    <table>
+    <tr>
+      <td>Category</td>
+      <td>
+    <select id="addmodulecat" class="text">
+      {% for cat in category_list %} 
+      <option value="{{cat.id}}">{{cat.name}}</option>
+      {% endfor %} 
+    </select>
+    </td></tr>
+    <tr>
+      <td>Name</td>
+      <td><input id="addmodulename" type="text" class="text" style="width:100px;"></td>
+    </tr>
+    <tr>
+      <td>Path</td>
+      <td><input id="addmodulepath" type="text" class="text" style="width:300px;"></td>
+    </tr>    
+    </table>
+    <a href="javascript:addmodule();"><b>Add</b></a>
+    </div>
+</td>
+</tr>
+</table>
+<table>
+<tr>
+<td style="vertical-align:top">
+   <span class="section_title">Modules</span>
+   <table style="border: 0px solid #789DB3; border-spacing: 0px; width:120px;">
+      <tr>
+         <td class="modulelist">
+            <a href="/" class="modulelink">All</a>
+         </td>
+      </tr>
+   </table>
+      {% for cat in category_list %}
+      <table style="border: 0px solid #789DB3; border-spacing: 0px; width:120px;">
+      <tr>
+         <td class="modulecat">
+            <a href="javascript:togglemodlist({{cat.id}})" style="text-decoration:none"
+            ><img id="imgtriangle_{{cat.id}}" src="/static/triangle.gif" style="border:0;"
+            ><img id="imgarrow_{{cat.id}}" src="/static/downarrow.gif" style="border:0; display:none;"
+            ></a>
+            <a href="/changes/category/{{cat.id}}" class="catlink">{{cat.name}}</a>
+         </td>
+      </tr>
+      </table>
+      <div id="modulelist_cat_{{cat.id}}" style="display:none">
+      <table style="border: 0px solid #789DB3; border-spacing: 0px; width:120px;">
+         {% for module in cat.modules %}
+         <tr id="catrow{{cat.id}}">
+            <td class="modulelist">
+               <span style="">&nbsp;-&nbsp;</span>
+               <a href="/changes/module/{{module.id}}" class="modulelink">{{module.name}}</a>
+            </td>
+         </tr>
+         {% endfor %}
+      </table>
+      </div>
+      {% endfor %}
+</td>
+
+<td style="vertical-align: top;">
+   <span class="section_title">
+    Changes 
+    {% if module %}
+      in module <i>{{module.path}}</i>
+    {% else %}
+      {% if category %}
+         in category <i>{{category.name}}</i>
+      {% else %}
+         in all modules
+    {% endif %} {% endif %}
+   </span>
+      {% for changeset in changesets %}
+      {% with changeset|first as change %}
+         {% if change.newday %}
+            <table style="border: 1px solid #789DB3; border-spacing: 0px;">
+            <tr>
+               <td class="datehead" style="text-align:center; width:130px">
+                  {{ change.commit_time.date }}
+               </td>
+            <tr>
+            </table>
+         {% endif %}
+         <table style="border: 1px solid #789DB3; border-spacing: 1px;">
+            {% for change in changeset %}
+            <tr>
+               {% ifchanged change.user %}
+               <td class="x" style="text-align:center; width:130px"
+                   rowspan="{{changeset|length}}"
+		             onclick="javascript:switchtime({{change.id}})">
+		            <span id="timenice{{change.id}}" style="display:inline">
+			            {{change.commit_time_nice}}
+		            </span>
+		            <span id="time{{change.id}}" style="display:none">
+			            {{change.commit_time}}
+		            </span>
+	            </td>
+               {% endifchanged %}
+               <td class="x" style="text-align:center; width:100px; padding:0px;">
+                  <b>{{change.file.repository.name}}</b>
+               </td>
+               <td class="x" style="width:300px; padding:0px;">
+                  <b>{{change.file.name}}</b>
+               </td>
+               <td class="x" style="width:90px; padding:0px;">
+                  {{change.rev_new}}
+               </td>
+               <td class="x" style="width:120px; padding:0px;">
+                  <a id="showdiff{{change.id}}"
+                     href="javascript:showdiff(true, {{change.id}})">show diff</a>
+                  <a id="hidediff{{change.id}}" style="display:none"
+                     href="javascript:showdiff(false, {{change.id}})">hide diff</a>
+                  {{change.diffstat}}
+               </td>
+            </tr>
+            {% endfor %}
+            <tr>
+               <td class="x" style="text-align:center; width:100px">
+                  {{change.user.name}}
+               </td>
+               <td colspan="4" class="x" id="logm{{change.id}}" style="width:400">
+		            {% if change.logisshort %}
+     	               {{change.shortlog|safe}}
+		            {% else %}
+     	               <span id="shortlog{{change.id}}">
+                        {{change.shortlog|safe}}
+                     </span>
+    	               <a id="longlogswitch{{change.id}}"
+                        href="javascript:loadLogMessage({{change.id}})">...</a> 
+                     <span id="longlog{{change.id}}" style="display:none">
+                        {{change.longlog|safe}}
+                     </span>
+		            {% endif %}
+               </td>
+            </tr>
+         </table>
+         {% for change in changeset %}
+         <div id="diffview{{change.id}}" style="display:none">
+	         <img src="/static/snake.gif">
+         </div>
+         <a id="bhidediff{{change.id}}"
+            style="display:none; font-size:12px;"
+            href="javascript:showdiff(false, {{change.id}})">hide diff</a>
+         {% endfor %}
+      {% endwith %}
+      {% endfor %}
+      </td>
+   </tr>
+   <tr>
+   <td></td>
+   <td>
+      {% if navigation.hasprev %}
+      <a class="pagination" href="{{url}}/skip/{{navigation.prevoffset}}">Prev {{navigation.limit}}</a>
+      {% endif %}
+      &nbsp;
+      &nbsp;
+      &nbsp;
+      {% if navigation.hasnext %}
+      <a class="pagination" href="{{url}}/skip/{{navigation.nextoffset}}">Next {{navigation.limit}}</a>
+      {% endif %}
+   </td>
+   </tr>
+</table>
+</body>
+</html>
+<!--
+vim:set ts=3 sw=3 nowrap et ai:  
+-->

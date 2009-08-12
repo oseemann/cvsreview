@@ -1,0 +1,16 @@
+
+<table style="border: 1px solid #789DB3; border-spacing: 0px;">
+{% for line in difflines  %}
+<tr><td 
+
+{% if line.diffin %}
+	class="diffin"
+{% else %} {% if line.diffout %}
+	class="diffout"
+{% else %}
+	class="code"
+{% endif %} {% endif %}
+	
+>{{line.str|safe}}</td></tr>
+{% endfor %}
+</table>

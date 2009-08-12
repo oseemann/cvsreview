@@ -1,0 +1,123 @@
+body {
+   font-family: tahoma, arial, Helvetica;
+   color: #000000;
+}
+
+td.x {
+   font-family: tahoma, arial, Helvetica;
+   font-size: 12px;
+   color: #000000;
+   background-color: #ECECFF;
+   padding: 4px;
+   margin: 0px;
+   vertical-align: top;
+}
+
+td.y {
+   font-family: tahoma, arial, Helvetica;
+   font-size: 12px;
+   color: #000000;
+   background-color: #ECECFF;
+   margin: 0px;
+   padding: 0px;
+   vertical-align: top;
+}
+
+td.modulelist {
+   font-family: tahoma, arial, Helvetica;
+   font-size: 10px;
+   color: #000000;
+   background-color: #ECFCFF;
+   padding: 0px;
+   margin: 0px;
+   vertical-align: middle;
+}
+
+td.modulecat {
+   font-family: tahoma, arial, Helvetica;
+   font-size: 12px;
+   color: #000000;
+   background-color: #ECFCFF;
+   padding: 0px;
+   margin: 0px;
+   vertical-align: middle;
+}
+
+td.datehead {
+   font-family: tahoma, arial, Helvetica;
+   font-size: 12px;
+   color: #FFFFFF;
+   background-color: #334DCC;
+   padding: 4px;
+   margin: 0px;
+   vertical-align: middle;
+   font-weight: bold;
+}
+
+div.diffview {
+   visibility:hidden;
+}
+
+.section_title {
+   font-weight: bold;
+}
+
+a.modulelink {
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 12px;
+}
+
+a.catlink {
+   color: #000000;
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 13px;
+}
+
+a.pagination {
+   font-weight: bold;
+   text-decoration: none;
+   font-size: 12px;
+}
+
+td.code {
+   font-family: "Courier New", Courier, monospace;
+   font-size: 12px;
+   color: #000000;
+   background-color: #ECFCFF;
+   padding: 0px;
+   margin: 0px;
+   vertical-align: middle;
+}
+
+td.diffin {
+   font-family: "Courier New", Courier, monospace;
+   font-size: 12px;
+   color: #000000;
+   background-color: #8FFF8F;
+   padding: 0px;
+   margin: 0px;
+   vertical-align: middle;
+}
+
+td.diffout {
+   font-family: "Courier New", Courier, monospace;
+   font-size: 12px;
+   color: #000000;
+   background-color: #FF7A7A;
+   padding: 0px;
+   margin: 0px;
+   vertical-align: middle;
+}
+
+input.text {
+   font-size:8pt;
+   font-weight:bold; 
+   border-width:1px;
+   font-family: "Courier New", Courier, monospace;
+}
+
+/*
+vim:set ts=3 sw=3 nowrap et ai:  
+*/
