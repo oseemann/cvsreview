@@ -17,7 +17,3 @@ if __name__ == '__main__':
       c.run()
 
 
-#diff = r.rawdiff(["xx.c"], "1.55", ["xx.c"], "1.56", 1)
-#print diff.read(10000)
-
-
