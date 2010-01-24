@@ -1,0 +1,56 @@
+head	1.3;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.3
+date	2010.01.23.14.56.58;	author oliver;	state dead;
+branches;
+next	1.2;
+commitid	1jkXnv6smrOBDuku;
+
+1.2
+date	2010.01.23.14.56.38;	author oliver;	state Exp;
+branches;
+next	1.1;
+commitid	Dv2WNSsbVYEuDuku;
+
+1.1
+date	2010.01.23.14.56.07;	author oliver;	state Exp;
+branches;
+next	;
+commitid	zcZsz4b2xNBjDuku;
+
+
+desc
+@@
+
+
+1.3
+log
+@remove file
+@
+text
+@This file will be deleted.
+But not yet, add another commit first.
+@
+
+
+1.2
+log
+@second commit on the soon-to-be deleted file
+@
+text
+@@
+
+
+1.1
+log
+@add file that will serve as a test case for deleted files
+@
+text
+@d2 1
+@
+

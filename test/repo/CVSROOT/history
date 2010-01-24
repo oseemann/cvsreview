@@ -1,0 +1,14 @@
+O4a42923d|oliver|~/tmp/*0|module1||module1
+O4a42923e|oliver|~/tmp/*0|module2||module2
+M4a429272|oliver|~/tmp/*0|module2|1.2|gpl.txt
+M4a429297|oliver|~/tmp/*0|module2|1.3|gpl.txt
+O4b5b0dcd|oliver|/workspace/projects/cvsreview/test/checkout/*0|module2||module2
+A4b5b0e07|oliver|/workspace/projects/cvsreview/test/checkout/*0|module2|1.1|deleted_file.txt
+M4b5b0e26|oliver|/workspace/projects/cvsreview/test/checkout/*0|module2|1.2|deleted_file.txt
+R4b5b0e3a|oliver|/workspace/projects/cvsreview/test/checkout/*0|module2|1.3|deleted_file.txt
+O4b5b1b8b|oliver|/workspace/projects/cvsreview/test/checkout/*0|module1||module1
+M4b5b1bcb|oliver|/workspace/projects/cvsreview/test/checkout/*0|module1|1.2|file2.txt
+M4b5c0e9f|oliver|/workspace/projects/cvsreview/test/checkout/*0|module1|1.3|file2.txt
+A4b5c490c|oliver|/workspace/projects/cvsreview/test/checkout/*0|module2|1.1|timestamp.txt
+A4b5c5209|oliver|/workspace/projects/cvsreview/test/checkout/*0|module2|1.1|timestamp_deleted.txt
+R4b5c5223|oliver|/workspace/projects/cvsreview/test/checkout/*0|module2|1.2|timestamp_deleted.txt

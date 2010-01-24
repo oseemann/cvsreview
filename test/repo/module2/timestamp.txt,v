@@ -1,0 +1,25 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2010.01.24.13.20.12;	author oliver;	state Exp;
+branches;
+next	;
+commitid	mzmMmwijU5Tp4Cku;
+
+
+desc
+@@
+
+
+1.1
+log
+@file for the timestamp test case
+@
+text
+@File for the timestamp testcase.
+@

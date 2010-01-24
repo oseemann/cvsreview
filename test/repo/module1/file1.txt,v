@@ -1,0 +1,41 @@
+head     1.1;
+branch   1.1.1;
+access   ;
+symbols  release_1:1.1.1.1 vendor_1:1.1.1;
+locks    ; strict;
+comment  @# @;
+
+
+1.1
+date     2009.06.24.20.52.28;  author oliver;  state Exp;
+branches 1.1.1.1;
+next     ;
+commitid        xJdVUZDb1Am3s9Tt;
+
+1.1.1.1
+date     2009.06.24.20.52.28;  author oliver;  state Exp;
+branches ;
+next     ;
+commitid        xJdVUZDb1Am3s9Tt;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@test l
+@
+
+
+1.1.1.1
+log
+@test repo, import module 1
+@
+text
+@@
