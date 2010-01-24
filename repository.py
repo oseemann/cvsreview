@@ -3,6 +3,7 @@
 # vim:set autoindent smarttab nowrap:
 
 import os
+import time
 from datetime import datetime
 import unittest
 import vclib.ccvs
@@ -184,13 +185,23 @@ class RepositoryTest(unittest.TestCase):
 
    def testTimestamp(self):
       r = RepositoryAccess('test/repo')
+      dt = datetime(2010, 1, 24, 14, 20, 12, 0)
+      ts = time.mktime(dt.timetuple())
+      # timestamp test must manipulate the mtime because git will
+      # not preserve it
+      os.utime(r._fullpath('./module2/timestamp.txt'), (ts, ts))
       ts = r.getTimestamp('./module2/timestamp.txt')
-      self.assert_(ts == datetime(2010, 1, 24, 14, 20, 12, 431180))
+      self.assert_(ts == dt)
 
    def testTimestampDeleted(self):
       r = RepositoryAccess('test/repo')
+      dt = datetime(2010, 1, 24, 14, 58, 59, 0)
+      ts = time.mktime(dt.timetuple())
+      # timestamp test must manipulate the mtime because git will
+      # not preserve it
+      os.utime(r._fullpath('./module2/timestamp_deleted.txt'), (ts, ts))
       ts = r.getTimestamp('./module2/timestamp_deleted.txt')
-      self.assert_(ts == datetime(2010, 1, 24, 14, 58, 59, 382430))
+      self.assert_(ts == dt)
 
 class PreviousRevTest(unittest.TestCase):
    def testRevs(self):
