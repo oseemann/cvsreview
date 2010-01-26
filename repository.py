@@ -42,7 +42,13 @@ class RevisionList:
       try:
          self.revs = repo.itemlog([file], None, {})
       except vclib.ItemNotFound:
-         raise UnknownFile()
+         # retry file in the Attic
+         (dir, fname) = os.path.split(file)
+         attic = os.path.join(dir, 'Attic', fname)
+         try:
+            self.revs = repo.itemlog([attic], None, {})
+         except vclib.ItemNotFound:
+            raise UnknownFile(file)
 
    def next(self):
       if self.cur >= len(self.revs):
@@ -148,6 +154,15 @@ class RepositoryTest(unittest.TestCase):
       self.assert_('1.2' in allrevs)
       self.assert_('1.3' in allrevs)
       self.assert_(len(allrevs) == 4)
+
+   def testAllRevisionsDeleted(self):
+      r = RepositoryAccess('test/repo')
+      revisions = r.getRevisions('./module2/deleted_file.txt')
+      allrevs = [r.string for r in revisions]
+      self.assert_('1.1' in allrevs)
+      self.assert_('1.2' in allrevs)
+      self.assert_('1.3' in allrevs)
+      self.assert_(len(allrevs) == 3)
 
    def testGetNewest(self):
       r = RepositoryAccess('test/repo')
