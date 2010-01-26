@@ -81,7 +81,7 @@ class RepositoryScanner:
          return
 
       # if revision has not changed, update timestamp and continue
-      revlist = RevisionList(self.repo, filename)
+      revlist = self.repo.getRevisions(filename)
       rev = revlist.getNewest()
       if rev.string == file.last_rev:
          print "%s: %s/%s" % (file.name, rev.string, file.last_rev)
