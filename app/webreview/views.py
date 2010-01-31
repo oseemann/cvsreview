@@ -5,7 +5,7 @@
 import vclib.ccvs
 import django.http as http
 from django.shortcuts import render_to_response
-from cvsreview.webreview.models import File, Repository, Change, User, Comment, Category
+from webreview.models import File, Repository, Change, User, Comment, Category
 
 class Navigation:
     def __init__(self, max, offset):

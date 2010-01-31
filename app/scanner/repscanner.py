@@ -3,13 +3,15 @@
 # vim:set autoindent smarttab nowrap:
 
 import os
-import settings
+import sys
 import unittest
 from datetime import datetime
 
+sys.path.append(os.path.realpath(os.path.join(os.path.dirname(__file__), '..')))
 # import the django environment first before using any local modules
+import app.settings
 from django.core.management import setup_environ
-setup_environ(settings)
+setup_environ(app.settings)
 
 from webreview.models import Repository, File, Change, User
 from repository import RepositoryAccess, RevisionList, previousRev
