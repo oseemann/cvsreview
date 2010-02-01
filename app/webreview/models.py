@@ -43,23 +43,14 @@ class Change(models.Model):
    def logisshort(self):
       return (len(self.logmessage) < self.loglenlimit)
 
-   def addSFRlink(self, str):
-      expr = re.compile(r'^(.*)SFR-(13\d{5})(.*)$', re.DOTALL)
-      groups = expr.findall(str)
-      if len(groups) > 0:
-         group = groups[0]
-         return '%s<a href="http://sourceforge.de.ingenico.com/cgi/sf_tracker.cgi?sfid=%s">SFR-%s</a>%s' % (group[0], group[1], group[1], group[2])
-      else:
-         return str
-
    def longlog(self):
-      return self.addSFRlink(self.logmessage)
+      return self.logmessage
    
    def shortlog(self):
       if self.logisshort():
-         return self.addSFRlink(self.logmessage)
+         return self.logmessage
       else:
-         return self.addSFRlink(self.logmessage[:self.loglenshort])
+         return self.logmessage[:self.loglenshort]
 
    def commit_time_nice(self):
       delta = datetime.now() - self.commit_time
