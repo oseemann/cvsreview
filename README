@@ -1,0 +1,23 @@
+CVSReview - View and review of changes in CVS Repositories
+==========================================================
+
+This software is a web-based application that provides a change-based view of
+CVS repositories, instead of the common file-based view that reflects the
+directory structure of the repository.
+
+For that purpose the changes of all files in a repository are stored in a
+database. This allows for a fast view of all recent changes in a repository.
+Changes are grouped as changesets by taking into account commit message, commit
+time and user.
+
+The software is currently work-in-progress with change review, comment and approval
+capabilites still missing.
+
+See the INSTALL file for installation instructions.
+See the COPYING file for copyright information.
+
+Author: Oliver Seemann <os (at) oebs.net>
+
+This software includes parts of ViewVC software, Copyright ©1999-2009 The ViewCVS Group.
+See the file app/vclib/README for more information.
+
