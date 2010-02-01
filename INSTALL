@@ -1,5 +1,9 @@
 Installation Instructions
 =========================
 
+To be documented.
 
+For now run the django manage.py to setup db and run the webserver.
+Add modules/repositories via the web interfaces.
+Run scripts/scan.py as a cron job to scan for files and changes.
 
