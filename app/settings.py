@@ -5,8 +5,9 @@ import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+# add admin info here
 ADMINS = (
-    ('Oliver', 'os@oebs.net'),
+#    ('name', 'email addr'),
 )
 
 APP_ROOT = os.path.realpath(os.path.dirname(__file__))
@@ -47,7 +48,7 @@ MEDIA_URL = 'static'
 ADMIN_MEDIA_PREFIX = '/media/'
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = ')!p#!hw&iv^y5c6j4da=qn##22gpes1(j_7@(vw-%*0e)9p^n9'
+SECRET_KEY = 'SECRET_KEY: change me!'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
