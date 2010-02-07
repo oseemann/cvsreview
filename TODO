@@ -1,6 +1,8 @@
 
 TODO:
 
-- allow approval / rejection of changes
-- allow comments to changes
-- add module quicksearch (javascript)
+- general: add packaging/installation mechanism (setuptools?)
+- scan: evaluate repository history file to minimize scanning effort
+- web: allow approval / rejection of changes
+- web: allow comments to changes
+- web: add module quicksearch (javascript)
